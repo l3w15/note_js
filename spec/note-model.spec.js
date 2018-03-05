@@ -1,6 +1,6 @@
 function testNoteContent() {
   var note = new Note("kaari is green");
-  assert.isTrue(note._content === "kaari is green");
+  assert.isTrue(note._text === "kaari is green");
 };
 testNoteContent()
 
