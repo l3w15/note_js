@@ -1,0 +1,1 @@
+## Note taking app in Vanilla-JavaScript
