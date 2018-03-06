@@ -24,10 +24,21 @@ function testAddNote() {
 };
 testAddNote();
 
+// describe('::printNotes returns all notes::');
+// function testPrintNotes() {
+//   var list = new List();
+//   list.addNote("test");
+//   assert.isTrue(list.printNotes() === "test");
+// };
+// testPrintNotes();
+
 describe('::printNotes returns all notes::');
-function testPrintNotes() {
+function testPrintNotes() {  
   var list = new List();
-  list.addNote("test");
-  assert.isTrue(list.printNotes() === "test");
-};
+  var note = new Note("test");
+  var a = [];
+  a.push(note);
+  list._notes.push(note);
+  matchArrays(list.printNotes(), a);
+}
 testPrintNotes();

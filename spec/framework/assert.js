@@ -16,7 +16,6 @@ var assert = {
   }
 };
 
-
 function expect(subject) {
   return new Test(subject);
 }

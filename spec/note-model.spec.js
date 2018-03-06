@@ -7,6 +7,12 @@ function testNoteContent() {
 };
 testNoteContent()
 
+describe('::_text property equals input string::');
+function testExpectNote() {
+  var note = new Note("kaari is green");
+  assert.isTrue(expect(note._text).toBe("kaari is green"))
+};
+
 describe('::returns note text::');
 function testReturnString() {
   var note = new Note("kaari is green");
