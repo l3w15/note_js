@@ -1,7 +1,3 @@
-// create function that takes argument string
-// and creates new Note passing string as argument
-// so that it's stored in note._text
-// and pushes new Note into List.arrayOfNotes
 
 List = function() {
   this._notes = [];
@@ -10,9 +6,9 @@ List = function() {
 List.prototype = {
 
   printNotes: function() {
-    this._notes.forEach (function(note) {
-      return note.returnString();
-    })
+    for ( i = 0; i < this._notes.length; i++) {
+      return (this._notes[i].returnString());
+    }
   },
 
   addNote: function(string) {

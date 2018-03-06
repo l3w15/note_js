@@ -1,3 +1,5 @@
+
+// use `populate` in console to create new List and populate with 2 notes
 describe('::_text property is a string::');
 function testNoteContent() {
   var note = new Note("kaari is green");
