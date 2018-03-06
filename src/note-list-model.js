@@ -5,10 +5,16 @@ List = function() {
 
 List.prototype = {
 
+  // printNotes: function() {
+  //   for ( i = 0; i < this._notes.length; i++) {
+  //     return this._notes[i].returnString();
+  //   }
+  // },
+
   printNotes: function() {
-    for ( i = 0; i < this._notes.length; i++) {
-      return (this._notes[i].returnString());
-    }
+    this._notes.forEach(element => {
+      return element;
+    });
   },
 
   addNote: function(string) {

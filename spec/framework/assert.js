@@ -15,3 +15,21 @@ var assert = {
     }
   }
 };
+
+
+function expect(subject) {
+  return new Test(subject);
+}
+
+function Test(subject) {
+  this.subject = subject
+}
+
+Test.prototype = {
+  
+  toBe: function(expectation) {
+    return this.subject === expectation;
+  }
+};
+
+
