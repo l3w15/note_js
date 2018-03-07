@@ -25,26 +25,38 @@ function expect(subject) {
 function describe(string, callback){
   console.log("%c**** " + string + " ***", 'background: #efacdd');
   callback();
-  console.log("%cHannah is a happy bunny", 'color: #30a337')
 }
 
 function it(string, callback){
   console.log(string);
   callback();
+  console.log("%cHannah is a happy bunny", 'color: #30a337')  
 }
 
 function Test(subject) {
   this.subject = subject
+  this.secretSquirrel = false
 }
 
 Test.prototype = {
 
-  toBe: function(expectation) {
-    if(this.subject !== expectation){
-      throw new Error(`${this.subject} is not equal to ${expectation}`)
-    };
+  not: function() {
+    this.secretSquirrel = true
+    return this
   },
 
+  toBe: function(expectation) {
+    if (this.secretSquirrel === false) {
+      if (this.subject !== expectation) {
+        throw new Error(`${this.subject} is not equal to ${expectation}`)
+      };
+    } else {
+      if (this.subject === expectation) {
+        throw new Error(`${this.subject} is equal to ${expectation}`)
+      }
+    }
+  },
+  
   // notToBe matcher needed
 
   toMatchArray: function(expectation) {

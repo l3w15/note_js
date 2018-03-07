@@ -3,7 +3,7 @@
 describe('List', function(){
   it('list is a defined object', function(){
     var list = new List();
-    expect(typeof list).toBe("object")
+    expect(typeof list).not().toBe("undefined")
   });
   it('initializes with a notes property as an empty array', function(){
     var list = new List();
