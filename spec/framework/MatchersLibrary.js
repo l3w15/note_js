@@ -25,7 +25,7 @@ function expect(subject) {
 function describe(string, callback){
   console.log("%c**** " + string + " ***", 'background: #efacdd');
   callback();
-  console.log("%cCarlos is a happy bunny!", 'color: #30a337')
+  console.log("%cHannah is a happy bunny", 'color: #30a337')
 }
 
 function it(string, callback){
