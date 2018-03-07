@@ -16,6 +16,8 @@ var assert = {
   }
 };
 
+////////////////
+
 function expect(subject) {
   return new Test(subject);
 }
@@ -28,7 +30,19 @@ Test.prototype = {
   
   toBe: function(expectation) {
     return this.subject === expectation;
+  },
+  toMatchArray: function(expectation) {
+    if ( !Array.isArray(this.subject) || !Array.isArray(expectation) ) {
+      throw new Error("One or more of these elements is not an array")
+    }
+    if (this.subject.length !== expectation.length) {
+      console.log(this.subject)
+      throw new Error(`${this.subject} is not the same length as ${expectation}!`);
+    }
+    for (i = 0; i < this.subject.length; i++) {
+      if (this.subject[i] !== expectation[i]) {
+        throw new Error (`${this.subject} does not match ${expectation}!`)
+      }
+    } console.log("Life is green!")
   }
 };
-
-
