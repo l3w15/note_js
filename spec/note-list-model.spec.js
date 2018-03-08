@@ -39,8 +39,12 @@ describe('test', function() {
     try {
       expect(typeof list).toBe("undefined")
     } catch(err) {
-      // document.write(err)
-      // document.write(err.stack)
+      document.write(err)
+      var stackRegEx = err.stack.match(/[\w-]+\.[\w-]+\:\w*/g);
+      for (i = 1; i < stackRegEx.length; i++) {
+        document.write(`<p>${stackRegEx[i]}</p>`)
+      };
+      console.log(err)
     }
   })
 });

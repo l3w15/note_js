@@ -16,6 +16,11 @@ var assert = {
   }
 };
 
+// Printing out stack trace with only filename and line to html
+var path = 'file:///Users/trapet/apps/training/makers_academy/week7/note_js/SpecRunner.html:38:3'
+var fileDisplay = path.match(/[\w-]+\.[\w-]+\:\w*/g)
+console.log(fileDisplay[0])
+
 ////////////////
 
 function expect(subject) {
