@@ -33,18 +33,14 @@ describe('printNotes', function(){
   })
 });
 
-describe('test', function() {
+describe('failing test', function(){
+  it('fails', function() {
+    expect(true).toBe(false);
+  });
+});
 
-  it('has a list', function() {
-    try {
-      expect(typeof list).toBe("undefined")
-    } catch(err) {
-      document.write(err)
-      var stackRegEx = err.stack.match(/[\w-]+\.[\w-]+\:\w*/g);
-      for (i = 1; i < stackRegEx.length; i++) {
-        document.write(`<p>${stackRegEx[i]}</p>`)
-      };
-      console.log(err)
-    }
-  })
+describe('failing array test', function(){
+  it('fails', function() {
+    expect([1, 2, 3]).toMatchArray([1, 2, 4]);
+  });
 });
