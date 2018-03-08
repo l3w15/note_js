@@ -34,13 +34,13 @@ describe('printNotes', function(){
 });
 
 describe('test', function() {
-  
+
   it('has a list', function() {
     try {
       expect(typeof list).toBe("undefined")
     } catch(err) {
-      document.write(err)
-      document.write(err.stack)
+      // document.write(err)
+      // document.write(err.stack)
     }
   })
 });
