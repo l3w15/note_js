@@ -17,7 +17,7 @@ describe('addNote', function(){
     list.addNote("test");
     expect(list._notes[0].returnString()).toBe("test")
   })
-})
+});
 
 describe('printNotes', function(){
   it('returns all notes', function(){
@@ -26,5 +26,15 @@ describe('printNotes', function(){
     var a = [];
     list._notes.push(note);
     expect(list.printNotes()).toMatchArray([note])
+  })
+});
+
+describe('test', function() {
+  var list;
+  beforeEach( function() {
+    list = new List()
+  });
+  it('has a list', function() {
+    expect(typeof list).not().toBe("undefined")
   })
 });

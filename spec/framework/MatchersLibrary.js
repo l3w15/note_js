@@ -30,13 +30,20 @@ function describe(string, callback){
 function it(string, callback){
   console.log(string);
   callback();
-  console.log("%cHannah is a happy bunny", 'color: #30a337')  
+  console.log("%cHannah is a happy bunny", 'color: #30a337')
 }
+
+function beforeEach(callback) {
+  if (callback) {
+    callback();
+  }
+};
 
 function Test(subject) {
   this.subject = subject
   this.secretSquirrel = false
 }
+
 
 Test.prototype = {
 
@@ -56,21 +63,33 @@ Test.prototype = {
       }
     }
   },
-  
-  // notToBe matcher needed
 
   toMatchArray: function(expectation) {
-    if ( !Array.isArray(this.subject) || !Array.isArray(expectation) ) {
-      throw new Error("One or more of these elements is not an array")
-    }
-    if (this.subject.length !== expectation.length) {
-      console.log(this.subject)
-      throw new Error(`${this.subject} is not the same length as ${expectation}!`);
-    }
-    for (i = 0; i < this.subject.length; i++) {
-      if (this.subject[i] !== expectation[i]) {
-        throw new Error (`${this.subject} does not match ${expectation}!`)
+    if(this.secretSquirrel === false) {
+      if ( !Array.isArray(this.subject) || !Array.isArray(expectation) ) {
+        throw new Error("One or more of these elements is not an array")
       }
-    } 
-  }
+      if (this.subject.length !== expectation.length) {
+        console.log(this.subject)
+        throw new Error(`${this.subject} is not the same length as ${expectation}!`);
+      }
+      for (i = 0; i < this.subject.length; i++) {
+        if (this.subject[i] !== expectation[i]) {
+          throw new Error (`${this.subject} does not match ${expectation}!`)
+        }
+      }
+    } else {
+      if ( !Array.isArray(expectation) ) {
+        throw new Error(`${expectation} is not an array`)
+      }
+      if (this.subject.length === expectation.length) {
+        for (i = 0; i < this.subject.length; i++) {
+          if (this.subject[i] === expectation[i]) {
+            throw new Error ("Arrays are equal")
+          }
+        }
+      }
+    }
+  },
+
 };
