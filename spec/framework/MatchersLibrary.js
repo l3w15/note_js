@@ -29,10 +29,13 @@ function expect(subject) {
 
 function describe(string, callback){
   console.log("%c**** " + string + " ***", 'background: #efacdd');
+  // document.getElementById("tests").appendChild(`<div>${string}</div>`)
+  document.write(`<div class="desc" >***** ${string} ******* </div>`);
   callback();
 }
 
 function it(string, callback){
+  document.write(`<div class="it" >    ** ${string} ** </div>`)
   beforeEach(beforeEachFunction);
   console.log(string);
   callback();
@@ -64,8 +67,9 @@ Test.prototype = {
   toBe: function(expectation) {
     if (this.secretSquirrel === false) {
       if (this.subject !== expectation) {
-        throw new Error(`${this.subject} is not equal to ${expectation}`)
-      };
+        var err = new Error(`${this.subject} is not equal to ${expectation}`)
+        document.write(err.stack);
+      }
     } else {
       if (this.subject === expectation) {
         throw new Error(`${this.subject} is equal to ${expectation}`)
@@ -102,3 +106,4 @@ Test.prototype = {
   },
 
 };
+window.onload;

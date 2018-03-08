@@ -34,7 +34,7 @@ describe('printNotes', function(){
 });
 
 describe('test', function() {
-  
+
   it('has a list', function() {
     try {
       expect(typeof list).toBe("undefined")
