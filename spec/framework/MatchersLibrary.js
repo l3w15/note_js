@@ -5,21 +5,30 @@
 //   };
 //   console.log(string)
 // };
-
-var assert = {
-  isTrue: function (assertionToCheck) {
-    if (!assertionToCheck) {
-      throw new Error(assertionToCheck + " is not truthy!")
-    } else if (!!assertionToCheck) {
-      console.log("Life is green!")
-    }
-  }
-};
+//
+// var assert = {
+//   isTrue: function (assertionToCheck) {
+//     if (!assertionToCheck) {
+//       throw new Error(assertionToCheck + " is not truthy!")
+//     } else if (!!assertionToCheck) {
+//       console.log("Life is green!")
+//     }
+//   }
+// };
 
 ////////////////
 
 function expect(subject) {
   return new Test(subject);
+}
+
+var beforeEachFunction;
+
+function beforeEach(callback){
+  beforeEachFunction = callback;
+  if(callback){
+    callback();
+  }
 }
 
 function describe(string, callback){
@@ -28,10 +37,13 @@ function describe(string, callback){
 }
 
 function it(string, callback){
+  beforeEach(beforeEachFunction)
   console.log(string);
   callback();
   console.log("%cHannah is a happy bunny", 'color: #30a337')
 }
+
+
 
 function Test(subject) {
   this.subject = subject
@@ -63,7 +75,6 @@ Test.prototype = {
         throw new Error("One or more of these elements is not an array")
       }
       if (this.subject.length !== expectation.length) {
-        console.log(this.subject)
         throw new Error(`${this.subject} is not the same length as ${expectation}!`);
       }
       for (i = 0; i < this.subject.length; i++) {

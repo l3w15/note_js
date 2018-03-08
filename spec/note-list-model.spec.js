@@ -1,8 +1,11 @@
+var list;
 
+beforeEach(function(){
+  list = new List();
+})
 
 describe('List', function(){
   it('list is a defined object', function(){
-    var list = new List();
     expect(typeof list).not().toBe("undefined")
   });
   it('initializes with a notes property as an empty array', function(){
@@ -13,7 +16,6 @@ describe('List', function(){
 
 describe('addNote', function(){
   it('adds a note to the list', function(){
-    var list = new List();
     list.addNote("test");
     expect(list._notes[0].returnString()).toBe("test")
   })
@@ -21,7 +23,6 @@ describe('addNote', function(){
 
 describe('printNotes', function(){
   it('returns all notes', function(){
-    var list = new List();
     var note = new Note("test");
     var a = [];
     list._notes.push(note);
