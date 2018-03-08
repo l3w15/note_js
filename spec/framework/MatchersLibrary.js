@@ -28,12 +28,16 @@ function describe(string, callback){
 }
 
 function it(string, callback){
+  beforeEach(beforeEachFunction);
   console.log(string);
   callback();
   console.log("%cHannah is a happy bunny", 'color: #30a337')
 }
 
+var beforeEachFunction;
+
 function beforeEach(callback) {
+  beforeEachFunction = callback;
   if (callback) {
     callback();
   }
