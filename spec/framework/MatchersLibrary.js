@@ -102,8 +102,8 @@ Test.prototype = {
         }
       }
     } else {
-      if ( !Array.isArray(expectation) ) {
-        displayError(new Error(`${expectation} is not an array`))
+      if ( !Array.isArray(this.subject) || !Array.isArray(expectation) ) {
+        displayError(new Error(`One or more of these elements is not an array`))
       }
       if (this.subject.length === expectation.length) {
         for (i = 0; i < this.subject.length; i++) {
