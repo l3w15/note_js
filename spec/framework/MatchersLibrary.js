@@ -27,20 +27,25 @@ function expect(subject) {
   return new Test(subject);
 }
 
-var divCount = 1
+var divCount = 1;
+var descString;
+var itString;
 
 function describe(string, callback){
   console.log("%c**** " + string + " ***", 'background: #efacdd');
-  document.write(`<div class="desc" id="desc${divCount}">${string}</div>`);
-  divCount ++
+  // document.write(`<div class="desc" id="desc${divCount}">${string}</div>`);
+  descString = string
+
   callback();
 }
 
 function it(string, callback){
   // TODO: work out how to append it divs to their describe div and err divs
   // to their it divs. This will mean we can change the styling of failing
-  // describes and its so they go reddish when they contain an Error 
-  document.write(`<div class="it" >${string}</div>`)
+  // describes and its so they go reddish when they contain an Error
+  itString = string;
+
+
   beforeEach(beforeEachFunction);
   console.log(string);
   callback();
@@ -56,14 +61,25 @@ function beforeEach(callback) {
   }
 };
 
+function displayNoError() {
+  document.write(`<div class="desc" id="desc${divCount}">${descString}</div>`)
+  document.write(`<div class="it" id="it${divCount}">${itString}</div>`);
+  divCount ++;
+}
+
 var err;
 
 function displayError(err) {
+  console.log(err);
+  document.write(`<div class="desc-err" id="desc${divCount}">${descString}</div>`);
+  document.write(`<div class="it-err" id="it${divCount}">${itString}</div>`);
   document.write(`<div class="err-header">${err}</div>`)
   var stackRegEx = err.stack.match(/[\w-]+\.[\w-]+\:\w*/g);
   for (i = 1; i < stackRegEx.length; i++) {
+    var errStackElement = `<div class="err-stack">${stackRegEx[i]}</div>`
     document.write(`<div class="err-stack">${stackRegEx[i]}</div>`)
   }
+  divCount ++;
 }
 
 function Test(subject) {
@@ -83,11 +99,14 @@ Test.prototype = {
     if (this.secretSquirrel === false) {
       if (this.subject !== expectation) {
         displayError(new Error(`${this.subject} is not equal to ${expectation}`));
-        // displayError(err);
+      } else {
+        displayNoError();
       }
     } else {
       if (this.subject === expectation) {
         displayError(new Error(`${this.subject} is equal to ${expectation}`));
+      } else {
+        displayNoError();
       }
     }
   },
@@ -105,18 +124,19 @@ Test.prototype = {
             displayError(new Error (`${this.subject} does not match ${expectation}!`))
           }
         }
+        displayNoError();
       }
 
     } else {
       if ( !Array.isArray(this.subject) || !Array.isArray(expectation) ) {
         displayError(new Error(`One or more of these elements is not an array`))
-      }
-      if (this.subject.length === expectation.length) {
+      } else if (this.subject.length === expectation.length) {
         for (i = 0; i < this.subject.length; i++) {
           if (this.subject[i] === expectation[i]) {
             displayError(new Error ("Arrays are equal"))
           }
         }
+        displayNoError();
       }
     }
   },

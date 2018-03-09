@@ -30,14 +30,14 @@ h1 {
   border-bottom: 2px solid grey;
 }
 
-.err-header {
+.err-header, .desc-err {
   color: pink;
   background-color: red;
   padding-left: 20px;
   border-bottom: 2px solid grey;
 }
 
-.err-stack {
+.err-stack, .it-err {
   color: red;
   background-color: pink;
   padding-left: 40px;

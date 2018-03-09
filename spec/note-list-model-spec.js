@@ -41,6 +41,6 @@ describe('failing test', function(){
 
 describe('failing array test', function(){
   it('fails', function() {
-    expect([1, 2, 3]).toMatchArray("[1, 2, 4]");
+    expect("[1, 2, 3]").toMatchArray([1, 2, 3]);
   });
 });
