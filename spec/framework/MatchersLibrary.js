@@ -70,7 +70,6 @@ function displayNoError() {
 var err;
 
 function displayError(err) {
-  console.log(err);
   document.write(`<div class="desc-err" id="desc${divCount}">${descString}</div>`);
   document.write(`<div class="it-err" id="it${divCount}">${itString}</div>`);
   document.write(`<div class="err-header">${err}</div>`)
