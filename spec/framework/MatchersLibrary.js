@@ -1,10 +1,4 @@
-//
-// describe = function(string) {
-//   if (typeof string !== "string") {
-//     displayError(new Error("Incorrect syntax: description must be a string");
-//   };
-//   console.log(string)
-// };
+
 
 var assert = {
   isTrue: function (assertionToCheck) {
@@ -16,13 +10,6 @@ var assert = {
   }
 };
 
-// Printing out stack trace with only filename and line to html
-var path = 'file:///Users/trapet/apps/training/makers_academy/week7/note_js/SpecRunner.html:38:3'
-var fileDisplay = path.match(/[\w-]+\.[\w-]+\:\w*/g)
-console.log(fileDisplay[0])
-
-////////////////
-
 function expect(subject) {
   return new Test(subject);
 }
@@ -33,23 +20,20 @@ var itString;
 
 function describe(string, callback){
   console.log("%c**** " + string + " ***", 'background: #efacdd');
-  // document.write(`<div class="desc" id="desc${divCount}">${string}</div>`);
   descString = string
 
   callback();
 }
 
 function it(string, callback){
-  // TODO: work out how to append it divs to their describe div and err divs
-  // to their it divs. This will mean we can change the styling of failing
-  // describes and its so they go reddish when they contain an Error
+
   itString = string;
 
 
   beforeEach(beforeEachFunction);
   console.log(string);
   callback();
-  console.log("%cHannah is a happy bunny", 'color: #30a337')
+  console.log("%cAll green!", 'color: #30a337')
 }
 
 var beforeEachFunction;
